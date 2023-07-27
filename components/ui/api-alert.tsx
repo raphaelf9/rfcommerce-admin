@@ -30,7 +30,7 @@ export const ApiAlert: React.FC<ApiAlertProps> = ({
 
   const onCopy = () => {
     navigator.clipboard.writeText(description);
-    toast.success("Rota da API copiada para a clipboard!");
+    toast.success("Rota da API copiada com sucesso!");
   }
 
   return (
