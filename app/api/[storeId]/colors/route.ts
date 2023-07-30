@@ -18,15 +18,15 @@ export async function POST(
     }
 
     if(!name){
-      return new NextResponse('Um tamanho é necessário!', {status: 400});
+      return new NextResponse('Uma cor é necessário!', {status: 400});
     }
 
     if(!value){
-      return new NextResponse('Uma descrição é necessária!', {status: 400});
+      return new NextResponse('Uma descrição de cor é necessária!', {status: 400});
     }
 
     if(!params.storeId){
-      return new NextResponse('Uma ID da loja é necessária!', {status: 400});  
+      return new NextResponse('Uma ID da cor é necessária!', {status: 400});  
     }
 
     const storeByUserId = await prismadb.store.findFirst({
@@ -63,7 +63,7 @@ export async function GET(
 ){
   try{
     if(!params.storeId){
-      return new NextResponse('Uma ID da loja é necessária!', {status: 400});  
+      return new NextResponse('Uma ID da cor é necessária!', {status: 400});  
     }
 
     const colors = await prismadb.color.findMany({
