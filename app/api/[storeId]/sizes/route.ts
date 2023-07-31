@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(
   req: Request,
-  {params}:{params:{storeId: string}}
+  {params}:{params:{sizeId: string, }}
 ){
   try{
 
@@ -25,13 +25,13 @@ export async function POST(
       return new NextResponse('Uma descrição é necessária!', {status: 400});
     }
 
-    if(!params.storeId){
-      return new NextResponse('Uma ID da loja é necessária!', {status: 400});  
+    if(!params.sizeId){
+      return new NextResponse('Uma ID do tamanho é necessária!', {status: 400});  
     }
 
     const storeByUserId = await prismadb.store.findFirst({
       where:{
-        id: params.storeId,
+        id: params.sizeId,
         userId
       }
     });
@@ -41,41 +41,41 @@ export async function POST(
     }
 
 
-    const color = await prismadb.color.create({
+    const size = await prismadb.size.create({
       data:{
         name,
         value,
-        storeId: params.storeId
+        storeId: params.sizeId
       }
     });
 
-    return NextResponse.json(color);
+    return NextResponse.json(size);
 
   }catch(err){
-    console.log('[COLORS_POST]', err);
+    console.log('[SIZE_POST]', err);
     return new NextResponse('Internal Error', {status: 500});
   }
 }
 
 export async function GET(
   req: Request,
-  {params}:{params:{storeId: string}}
+  {params}:{params:{sizeId: string}}
 ){
   try{
-    if(!params.storeId){
-      return new NextResponse('Uma ID da loja é necessária!', {status: 400});  
+    if(!params.sizeId){
+      return new NextResponse('Uma ID de tamanho é necessária!', {status: 400});  
     }
 
-    const colors = await prismadb.color.findMany({
+    const size = await prismadb.size.findMany({
       where:{
-        storeId: params.storeId,
+        storeId: params.sizeId,
       }
     });
 
-    return NextResponse.json(colors);
+    return NextResponse.json(size);
 
   }catch(err){
-    console.log('[COLORS_GET]', err);
+    console.log('[SIZES_GET]', err);
     return new NextResponse('Internal Error', {status: 500});
   }
 }
