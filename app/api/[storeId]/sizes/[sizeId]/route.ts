@@ -21,7 +21,7 @@ export async function GET(
     return NextResponse.json(size);
 
   }catch(err){
-    console.log('[SIZES_GET]', err);
+    console.log('[SIZE_GET]', err);
     return new NextResponse("Falha interna", {status: 500});
   }
 }
@@ -42,7 +42,7 @@ export async function PATCH(
     }
 
     if(!name){
-      return new NextResponse('Uma descrição de tamanho é necessária!', {status: 400});
+      return new NextResponse('Um nome é necessário!', {status: 400});
     }
 
     if(!value){

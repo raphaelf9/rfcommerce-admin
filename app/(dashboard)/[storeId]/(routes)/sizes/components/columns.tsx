@@ -18,11 +18,11 @@ export const columns: ColumnDef<SizeColumn>[] = [
   },
   {
     accessorKey: "value",
-    header: "Valor",
+    header: "Descrição",
   },
   {
     accessorKey: "createdAt",
-    header: "Data",
+    header: "Data da Criação",
   },
   {
     id: "actions",

@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(
   req: Request,
-  {params}:{params:{sizeId: string, }}
+  {params}:{params:{storeId: string}}
 ){
   try{
 
@@ -18,20 +18,20 @@ export async function POST(
     }
 
     if(!name){
-      return new NextResponse('Um tamanho é necessário!', {status: 400});
+      return new NextResponse('Um nome é necessário!', {status: 400});
     }
 
     if(!value){
       return new NextResponse('Uma descrição é necessária!', {status: 400});
     }
 
-    if(!params.sizeId){
-      return new NextResponse('Uma ID do tamanho é necessária!', {status: 400});  
+    if(!params.storeId){
+      return new NextResponse('Uma ID da loja é necessária!', {status: 400});  
     }
 
     const storeByUserId = await prismadb.store.findFirst({
       where:{
-        id: params.sizeId,
+        id: params.storeId,
         userId
       }
     });
@@ -45,34 +45,34 @@ export async function POST(
       data:{
         name,
         value,
-        storeId: params.sizeId
+        storeId: params.storeId
       }
     });
 
     return NextResponse.json(size);
 
   }catch(err){
-    console.log('[SIZE_POST]', err);
+    console.log('[SIZES_POST]', err);
     return new NextResponse('Internal Error', {status: 500});
   }
 }
 
 export async function GET(
   req: Request,
-  {params}:{params:{sizeId: string}}
+  {params}:{params:{storeId: string}}
 ){
   try{
-    if(!params.sizeId){
-      return new NextResponse('Uma ID de tamanho é necessária!', {status: 400});  
+    if(!params.storeId){
+      return new NextResponse('Uma ID da loja é necessária!', {status: 400});  
     }
 
-    const size = await prismadb.size.findMany({
+    const sizes = await prismadb.size.findMany({
       where:{
-        storeId: params.sizeId,
+        storeId: params.storeId,
       }
     });
 
-    return NextResponse.json(size);
+    return NextResponse.json(sizes);
 
   }catch(err){
     console.log('[SIZES_GET]', err);

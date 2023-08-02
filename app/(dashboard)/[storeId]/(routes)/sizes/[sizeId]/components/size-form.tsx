@@ -39,7 +39,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const title = initialData ? "Area de edição de tamanhos." : "Área de criação dos Tamanhos.";
+  const title = initialData ? "Area de edição de tamanhos." : "Área de criação de tamanho.";
   const description = initialData ? "Editar um tamanho." : "Crie um novo tamanho.";
   const toastMessage = initialData ? "Tamanho atualizado com sucesso!" : "Tamanho criado com sucesso!";
   const action = initialData ? "Salvar alterações" : "Criar";
@@ -78,7 +78,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
       router.push(`/${params.storeId}/sizes`);
       toast.success("Tamanho removido com sucesso!");
     } catch (err) {
-      toast.error("Certifique-se de remover todos os produtos que usam este tamanho antes!");
+      toast.error("Certifique-se de remover todos os produtos que usam este painel antes!");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -101,7 +101,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
           <div className="grid grid-cols-3 gap-8">
             <FormField control={form.control} name="name" render={({ field }) => (
               <FormItem>
-                <FormLabel>Tamanho:</FormLabel>
+                <FormLabel>Nome:</FormLabel>
                 <FormControl>
                   <Input disabled={loading} placeholder="Tamanho" {...field} />
                 </FormControl>
@@ -112,7 +112,7 @@ export const SizeForm: React.FC<SizeFormProps> = ({
               <FormItem>
                 <FormLabel>Descrição:</FormLabel>
                 <FormControl>
-                  <Input disabled={loading} placeholder="Descrição" {...field} />
+                  <Input disabled={loading} placeholder="Descrição abreviada do tamanho" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
